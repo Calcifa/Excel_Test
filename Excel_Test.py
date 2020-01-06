@@ -1,20 +1,20 @@
-import xlrd
-import xlwt
-import xlutils.copy
+import openpyxl
+from openpyxl.utils import get_column_letter, column_index_from_string 
 
-
-workbook = xlrd.open_workbook('C:\\Users\DTJ\Desktop\工作簿1.xls')
-####################################通过名称获取##################################
-#sheets = workbook.sheet_names()
-#worksheet = workbook.sheet_by_name(sheets[0])
-####################################通过索引获取##################################
-worksheet = workbook.sheets()[0]
-rows = worksheet.nrows
-cols = worksheet.ncols
-A1 = worksheet.cell_value(0, 0)
-C4 = worksheet.cell_value(3, 2)
-A4 = A1 + C4
-appendbook = xlutils.copy.copy(workbook)
-appendsheet = appendbook.get_sheet(0)
-appendsheet.write(3, 0, A4)
-appendbook.save('C:\\Users\DTJ\Desktop\工作簿1.xls')
+workbook = openpyxl.load_workbook('C:\\Users\DTJ\Desktop\工作簿1.xlsx')
+worksheet = workbook.active
+#worksheet['A7'] = 13
+#worksheet['D7'] = 'stop'
+#x=7
+#y=6
+#letter = str(get_column_letter(x))
+#number = str(y)
+#coordinate = letter + number
+#worksheet[coordinate] = 12
+for x in range(1, 15 + 1):
+	letter = str(get_column_letter(x))
+	for y in range(1, 20 + 1):
+		number = str(y)
+		coordinate = letter + number
+		worksheet[coordinate] = x + y
+workbook.save('C:\\Users\DTJ\Desktop\工作簿1.xlsx')
