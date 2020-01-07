@@ -11,10 +11,13 @@ worksheet = workbook.active
 #number = str(y)
 #coordinate = letter + number
 #worksheet[coordinate] = 12
-for x in range(1, 15 + 1):
-	letter = str(get_column_letter(x))
-	for y in range(1, 20 + 1):
-		number = str(y)
-		coordinate = letter + number
-		worksheet[coordinate] = x + y
+#for x in range(1, 15 + 1):
+#	letter = str(get_column_letter(x))
+#	for y in range(1, 20 + 1):
+#		number = str(y)
+#		coordinate = letter + number
+#		worksheet[coordinate] = None
+for row in range(1, 41):
+	for column in range(3, 53):
+		worksheet.cell(row, column).value = row ** 2 * (column - row)
 workbook.save('C:\\Users\DTJ\Desktop\工作簿1.xlsx')
